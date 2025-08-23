@@ -4,7 +4,7 @@ const mobAgent = "00123456789"
 
 let oldSelButtonId = "inv-addmoney"; //the page loads with this button selected
 
-//SECTION - LOGIN PAGE SCRIPTS STARTES HERE
+//SECTION - LOGIN PAGE SCRIPTS STARTS HERE
 function isLoginGranted() {
   const txtMobile = document.getElementById("fld-mobile").value;
   const txtSecpin = document.getElementById("fld-secpin").value;
@@ -25,10 +25,10 @@ if (btnLogin) {
     else alert("Login attempt failed");
   });
 }
-//!SECTION login scripts ends here
+//!SECTION login page scripts ends
 
-//SECTION - MAIN PAGE > COMMON SECTION'S SCRIPTS STARTS HERE
 
+//SECTION - MAIN PAGE > COMMON NAVIG SECTION'S SCRIPTS STARTS HERE
 const btnAddmoney = document.getElementById("inv-addmoney");
 if (btnAddmoney) {
   btnAddmoney.addEventListener("click", function (e) {
@@ -124,4 +124,4 @@ function processNewSeleion(newSelButtonId) {
 
   oldSelButtonId = newSelButtonId;
 }
-//!SECTION - main page > common section's scripts ends here
+//!SECTION - main page > common navig section's scripts ends
