@@ -1,7 +1,10 @@
-//SECTION - LOGIN PAGE SCRIPTS STARTES HERE
 const custMobile = "00123456789";
 const custSecpin = "1234";
+const mobAgent = "00123456789"
 
+let oldSelButtonId = "inv-addmoney"; //the page loads with this button selected
+
+//SECTION - LOGIN PAGE SCRIPTS STARTES HERE
 function isLoginGranted() {
   const txtMobile = document.getElementById("fld-mobile").value;
   const txtSecpin = document.getElementById("fld-secpin").value;
@@ -9,7 +12,7 @@ function isLoginGranted() {
   if (txtMobile === null || txtSecpin === null) return false;
   if (txtMobile !== custMobile || txtSecpin !== custSecpin) return false;
 
-  console.log (txtMobile, txtSecpin)
+  console.log(txtMobile, txtSecpin);
 
   return true;
 }
@@ -24,64 +27,101 @@ if (btnLogin) {
 }
 //!SECTION login scripts ends here
 
-
-//SECTION - MAIN PAGE SCRIPTS STARTS HERE
-let oldSelButton = "addmoney";
-
-
-function invokeSelAction(newSelButtonId){
-
-
-
-  switch (selact) {
-
-  }
-}
+//SECTION - MAIN PAGE > COMMON SECTION'S SCRIPTS STARTS HERE
 
 const btnAddmoney = document.getElementById("inv-addmoney");
-if (btnAddmoney){
-  btnAddmoney.addEventListener("click", function(e) {
+if (btnAddmoney) {
+  btnAddmoney.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-addmoney");
-    })
+    if (oldSelButtonId !== "inv-addmoney") processNewSeleion("inv-addmoney");
+  });
 }
 const btnCashout = document.getElementById("inv-cashout");
-if (btnCashout){
-  btnCashout.addEventListener("click", function(e) {
+if (btnCashout) {
+  btnCashout.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-cashout");
-    })
+    if (oldSelButtonId !== "inv-cashout") processNewSeleion("inv-cashout");
+  });
 }
 const btnTransfer = document.getElementById("inv-transfer");
-if (btnTransfer){
-  btnTransfer.addEventListener("click", function(e) {
+if (btnTransfer) {
+  btnTransfer.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-transfer");
-    })
+    if (oldSelButtonId !== "inv-transfer") processNewSeleion("inv-transfer");
+  });
 }
 const btnGetbonus = document.getElementById("inv-getbonus");
-if (btnGetbonus){
-  btnGetbonus.addEventListener("click", function(e) {
+if (btnGetbonus) {
+  btnGetbonus.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-getbonus");
-    })
+    if (oldSelButtonId !== "inv-getbonus") processNewSeleion("inv-getbonus");
+  });
 }
 const btnPaybill = document.getElementById("inv-paybill");
-if (btnPaybill){
-  btnPaybill.addEventListener("click", function(e) {
+if (btnPaybill) {
+  btnPaybill.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-paybill");
-    })
+    if (oldSelButtonId !== "inv-paybill") processNewSeleion("inv-paybill");
+  });
 }
 const btnTransacts = document.getElementById("inv-transact");
-if (btnTransacts){
-  btnTransacts.addEventListener("click", function(e) {
+if (btnTransacts) {
+  btnTransacts.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("inv-transact");
-    })
+    if (oldSelButtonId !== "inv-transact") processNewSeleion("inv-transact");
+  });
 }
 
+function processNewSeleion(newSelButtonId) {
+  const oldSelButton = document.getElementById(oldSelButtonId);
+  const newSelButton = document.getElementById(newSelButtonId);
+  // console.log(oldSelButton.innerText, newSelButton.innerText);
 
+  const oldButtonLblId = "lbl" + oldSelButtonId.slice(3);
+  const newButtonLblId = "lbl" + newSelButtonId.slice(3);
+  const oldButtonLabel = document.getElementById(oldButtonLblId);
+  const newButtonLabel = document.getElementById(newButtonLblId);
+  // console.log(oldButtonLabel.innerText, newButtonLabel.innerText);
 
+  //making new sel button blue themed and old sel button normai-themed...
+  oldSelButton.classList.remove("border-blue-500");
+  oldSelButton.classList.remove("bg-blue-50");
+  oldSelButton.classList.add("border-[#0874f20d]");
 
-//!SECTION - main page scripts ends here
+  newSelButton.classList.remove("border-[#0874f20d]");
+  newSelButton.classList.add("border-blue-500");
+  newSelButton.classList.add("bg-blue-50");
+
+  //doing the same treatment for new and old buttons's labels...
+  oldButtonLabel.classList.remove("font-bold");
+  oldButtonLabel.classList.remove("text-blue-500");
+  oldButtonLabel.classList.add("text-[#080808b3]");
+  newButtonLabel.classList.remove("text-[#080808b3]");
+  newButtonLabel.classList.add("font-bold");
+  newButtonLabel.classList.add("text-blue-500");
+
+  //now, invoking associated action panel...
+  switch (newSelButtonId) {
+    case "inv-addmoney": {
+      break;
+    }
+    case "inv-cashout": {
+      break;
+    }
+    case "inv-transfer": {
+      break;
+    }
+    case "inv-getbonus": {
+      break;
+    }
+    case "inv-paybill": {
+      break;
+    }
+    case "inv-transact": {
+      break;
+    }
+  }
+
+  oldSelButtonId = newSelButtonId;
+}
+//!SECTION - main page > common section's scripts ends here
