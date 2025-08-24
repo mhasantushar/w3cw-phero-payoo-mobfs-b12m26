@@ -30,7 +30,7 @@
           <div class="flex gap-2">
             <img class="w-[50px]" src="./images/Group.png" alt="Payoo Logo">
             <div>
-              <h2 class="font-bold text-[#08080888] text-lg">BDT <span id="currBalance"
+              <h2 class="font-bold text-[#08080888] text-lg">BDT <span id="lbl-cust-currbalance"
                   class="text-[#080808e6]">50000.00</span></h2>
               <p class="font-medium text-[#08080880] text-sm">Avilable Balance</p>
             </div>
@@ -96,15 +96,15 @@
 
       <!-- //SECTION - BOTTOM TABBED AREA STARTS...  -->
       <!-- ADD MONEY TAB -->
-      <section class="" id="sect-addmoney">
+      <section class="" id="tab-addmoney">
         <h2 class="mb-6 font-semibold text-[#080808e6] text-lg text-center">Add Money</h2>
 
         <form class="bg-white p-6 rounded-3xl">
           <div>
-            <label class="font-medium text-[#080808b3]" for="fld-custbank">Select A Bank</label>
+            <label class="font-medium text-[#080808b3]" for="fld-custbank-of-addm">Select A Bank</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-custbank" placeholder="Select Bank" list="cust-banks" required />
-            <datalist id="cust-banks">
+              id="fld-custbank-of-addm" placeholder="Select Bank" list="lov-banks-of-addm" required />
+            <datalist id="lov-banks-of-addm">
               <option value="Brac Bank"></option>
               <option value="City Back"></option>
               <option value="Dutch-Bangla Bank"></option>
@@ -114,46 +114,46 @@
           </div>
 
           <div>
-            <label class="font-medium text-[#080808b3]" for="fld-custbacc">Bank Account Number</label>
+            <label class="font-medium text-[#080808b3]" for="fld-custbacc-of-addm">Bank Account Number</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-custbacc" placeholder="Enter 11 digit account number" required />
+              id="fld-custbacc-of-addm" placeholder="Enter 11 digit account number" required />
           </div>
 
           <div>
-            <label class="font-medium text-[#080808b3]" for="fld-addamount">Amount to Add</label>
+            <label class="font-medium text-[#080808b3]" for="fld-moneyval-of-addm">Amount to Add</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-addamount" placeholder="Enter the amount to add" required />
+              id="fld-moneyval-of-addm" placeholder="Enter the amount to add" required />
           </div>
 
           <div>
-            <label class="font-medium text-[#080808b3]" for="fld-secpin">Pin Number</label>
+            <label class="font-medium text-[#080808b3]" for="fld-securpin-of-addm">Pin Number</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-secpin" placeholder="Enter 4-digit pin number" required />
+              id="fld-securpin-of-addm" placeholder="Enter 4-digit pin number" required />
           </div>
 
           <button class="mt-8 px-5 py-6 rounded-4xl w-full font-bold text-white text-xl btn btn-info" id="btn-addmoney"
-            type="button">Add Money</button>
+            type="submit">Add Money</button>
         </form>
       </section>
 
       <!-- CASHOUT TAB -->
-      <section id="sect-cashout">
+      <section id="tab-cashout">
       </section>
 
       <!-- TRANSFER TAB -->
-      <section id="sect-transfer">
+      <section id="tab-transfer">
       </section>
 
       <!-- GET BONUS TAB -->
-      <section id="sect-getbonus">
+      <section id="tab-getbonus">
       </section>
 
       <!-- PAY BILL TAB -->
-      <section id="sect-paybill">
+      <section id="tab-paybill">
       </section>
 
       <!-- TRANSATIONS TAB -->
-      <section id="sect-transact">
+      <section id="tab-transact">
       </section>
     </main>
 
