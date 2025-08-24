@@ -55,37 +55,37 @@
         <nav class="justify-between gap-2 grid grid-cols-3 mt-6">
           <div
             class="flex flex-col justify-center items-center bg-blue-50 px-4 py-4 border-1 border-blue-500 rounded-xl"
-            id="inv-addmoney">
+            id="nav-addmoney">
             <img src="./images/wallet1.png" alt="Add Money">
             <h3 class="font-bold text-blue-500 text-sm" id="lbl-addmoney">Add Money</h3>
           </div>
 
           <div class="flex flex-col justify-center items-center px-4 py-4 border-[#0874f20d] border-1 rounded-xl"
-            id="inv-cashout">
+            id="nav-cashout">
             <img src="./images/send1.png" alt="Cashout">
             <h3 class="text-[#080808b3] text-sm" id="lbl-cashout">Cashout</h3>
           </div>
 
           <div class="flex flex-col justify-center items-center px-4 py-4 border-[#0874f20d] border-1 rounded-xl"
-            id="inv-transfer">
+            id="nav-transfer">
             <img src="./images/money1.png" alt="Transfer Money">
             <h3 class="text-[#080808b3] text-sm" id="lbl-transfer">Transfer Money</h3>
           </div>
 
           <div class="flex flex-col justify-center items-center px-4 py-4 border-[#0874f20d] border-1 rounded-xl"
-            id="inv-getbonus">
+            id="nav-getbonus">
             <img src="./images/bonus1.png" alt="Get Bonus">
             <h3 class="text-[#080808b3] text-sm" id="lbl-getbonus">Get Bonus</h3>
           </div>
 
           <div class="flex flex-col justify-center items-center px-4 py-4 border-[#0874f20d] border-1 rounded-xl"
-            id="inv-paybill">
+            id="nav-paybill">
             <img src="./images/purse1.png" alt="Pay Bill">
             <h3 class="text-[#080808b3] text-sm" id="lbl-paybill">Pay Bill</h3>
           </div>
 
           <div class="flex flex-col justify-center items-center px-4 py-4 border-[#0874f20d] border-2 rounded-xl"
-            id="inv-transact">
+            id="nav-transact">
             <img src="./images/transaction1.png" alt="Transactions">
             <h3 class="text-[#080808b3] text-sm" id="lbl-transact">Transactions</h3>
           </div>
@@ -103,7 +103,7 @@
           <div>
             <label class="font-medium text-[#080808b3]" for="fld-custbank">Select A Bank</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-custbank" placeholder="Select Bank" list="cust-banks" />
+              id="fld-custbank" placeholder="Select Bank" list="cust-banks" required />
             <datalist id="cust-banks">
               <option value="Brac Bank"></option>
               <option value="City Back"></option>
@@ -116,23 +116,23 @@
           <div>
             <label class="font-medium text-[#080808b3]" for="fld-custbacc">Bank Account Number</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-custbacc" placeholder="Enter 11 digit account number" />
+              id="fld-custbacc" placeholder="Enter 11 digit account number" required />
           </div>
 
           <div>
             <label class="font-medium text-[#080808b3]" for="fld-addamount">Amount to Add</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-addamount" placeholder="Enter the amount to add" />
+              id="fld-addamount" placeholder="Enter the amount to add" required />
           </div>
 
           <div>
             <label class="font-medium text-[#080808b3]" for="fld-secpin">Pin Number</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
-              id="fld-secpin" placeholder="Enter 4-digit pin number" />
+              id="fld-secpin" placeholder="Enter 4-digit pin number" required />
           </div>
 
-          <button class="mt-4 px-5 py-6 rounded-4xl w-full font-bold text-white text-xl btn btn-info"
-            id="btn-login mb-4" type="submit">Login</button>
+          <button class="mt-8 px-5 py-6 rounded-4xl w-full font-bold text-white text-xl btn btn-info" id="btn-addmoney"
+            type="button">Add Money</button>
         </form>
       </section>
 
@@ -143,11 +143,11 @@
       <!-- TRANSFER TAB -->
       <section id="sect-transfer">
       </section>
-      
+
       <!-- GET BONUS TAB -->
       <section id="sect-getbonus">
       </section>
-      
+
       <!-- PAY BILL TAB -->
       <section id="sect-paybill">
       </section>

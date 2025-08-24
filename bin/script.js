@@ -1,10 +1,18 @@
 const custMobile = "00123456789";
 const custSecpin = "1234";
-const mobAgent = "00123456789"
 
-let oldSelButtonId = "inv-addmoney"; //the page loads with this button selected
+let oldSelButtonId = "nav-addmoney"; //the page loads with this button selected
 
 //SECTION - LOGIN PAGE SCRIPTS STARTS HERE
+const btnLogin = document.getElementById("btn-login");
+if (btnLogin) {
+  btnLogin.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (isLoginGranted()) window.location.href = "./main.html";
+    else alert("Login attempt failed");
+  });
+}
+
 function isLoginGranted() {
   const txtMobile = document.getElementById("fld-mobile").value;
   const txtSecpin = document.getElementById("fld-secpin").value;
@@ -16,63 +24,74 @@ function isLoginGranted() {
 
   return true;
 }
-
-const btnLogin = document.getElementById("btn-login");
-if (btnLogin) {
-  btnLogin.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (isLoginGranted()) window.location.href = "./main.html";
-    else alert("Login attempt failed");
-  });
-}
 //!SECTION login page scripts ends
 
-
 //SECTION - MAIN PAGE > COMMON NAVIG SECTION'S SCRIPTS STARTS HERE
-const btnAddmoney = document.getElementById("inv-addmoney");
-if (btnAddmoney) {
-  btnAddmoney.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-addmoney") processNewSeleion("inv-addmoney");
-  });
-}
-const btnCashout = document.getElementById("inv-cashout");
-if (btnCashout) {
-  btnCashout.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-cashout") processNewSeleion("inv-cashout");
-  });
-}
-const btnTransfer = document.getElementById("inv-transfer");
-if (btnTransfer) {
-  btnTransfer.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-transfer") processNewSeleion("inv-transfer");
-  });
-}
-const btnGetbonus = document.getElementById("inv-getbonus");
-if (btnGetbonus) {
-  btnGetbonus.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-getbonus") processNewSeleion("inv-getbonus");
-  });
-}
-const btnPaybill = document.getElementById("inv-paybill");
-if (btnPaybill) {
-  btnPaybill.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-paybill") processNewSeleion("inv-paybill");
-  });
-}
-const btnTransacts = document.getElementById("inv-transact");
-if (btnTransacts) {
-  btnTransacts.addEventListener("click", function (e) {
-    e.preventDefault;
-    if (oldSelButtonId !== "inv-transact") processNewSeleion("inv-transact");
-  });
+const navOptions = [
+  "nav-addmoney",
+  "nav-cashout",
+  "nav-transfer",
+  "nav-getbonus",
+  "nav-paybill",
+  "nav-transact",
+];
+
+for (const selOpt of navOptions) {
+  const navOpt = document.getElementById(selOpt);
+  if (navOpt) {
+    navOpt.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (oldSelButtonId !== selOpt) processNewSelection(selOpt);
+    });
+  }
 }
 
-function processNewSeleion(newSelButtonId) {
+//NOTE - code till the function def below has been replace by above array+loop implementation, so it has been commented out for now
+
+// const cmdAddmoney = document.getElementById("nav-addmoney");
+// if (cmdAddmoney) {
+//   cmdAddmoney.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-addmoney") processNewSelection("nav-addmoney");
+//   });
+// }
+// const cmdCashout = document.getElementById("nav-cashout");
+// if (cmdCashout) {
+//   cmdCashout.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-cashout") processNewSelection("nav-cashout");
+//   });
+// }
+// const cmdTransfer = document.getElementById("nav-transfer");
+// if (cmdTransfer) {
+//   cmdTransfer.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-transfer") processNewSelection("nav-transfer");
+//   });
+// }
+// const cmdGetbonus = document.getElementById("nav-getbonus");
+// if (cmdGetbonus) {
+//   cmdGetbonus.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-getbonus") processNewSelection("nav-getbonus");
+//   });
+// }
+// const cmdPaybill = document.getElementById("nav-paybill");
+// if (cmdPaybill) {
+//   cmdPaybill.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-paybill") processNewSelection("nav-paybill");
+//   });
+// }
+// const cmdTransact = document.getElementById("nav-transact");
+// if (cmdTransact) {
+//   cmdTransact.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     if (oldSelButtonId !== "nav-transact") processNewSelection("nav-transact");
+//   });
+// }
+
+function processNewSelection(newSelButtonId) {
   const oldSelButton = document.getElementById(oldSelButtonId);
   const newSelButton = document.getElementById(newSelButtonId);
   // console.log(oldSelButton.innerText, newSelButton.innerText);
@@ -101,23 +120,24 @@ function processNewSeleion(newSelButtonId) {
   newButtonLabel.classList.add("text-blue-500");
 
   //now, invoking associated action panel...
+  //TODO - need to code to show/hide bottom panels based on user selection
   switch (newSelButtonId) {
-    case "inv-addmoney": {
+    case "nav-addmoney": {
       break;
     }
-    case "inv-cashout": {
+    case "nav-cashout": {
       break;
     }
-    case "inv-transfer": {
+    case "nav-transfer": {
       break;
     }
-    case "inv-getbonus": {
+    case "nav-getbonus": {
       break;
     }
-    case "inv-paybill": {
+    case "nav-paybill": {
       break;
     }
-    case "inv-transact": {
+    case "nav-transact": {
       break;
     }
   }
@@ -125,3 +145,45 @@ function processNewSeleion(newSelButtonId) {
   oldSelButtonId = newSelButtonId;
 }
 //!SECTION - main page > common navig section's scripts ends
+
+//SECTION - BOTTOM TABBED AREA > ADD MONEY STARTS...
+const btnAddmoney = document.getElementById("btn-addmoney");
+if (btnAddmoney) {
+  btnAddmoney.addEventListener("click", function (e) {
+    e.preventDefault();
+    processAddmoneyReq() ? alert("Add money succeeded!") : alert("Add money failed!");
+  });
+}
+
+function processAddmoneyReq() {
+  let element, uInput;
+
+  element = document.getElementById("fld-custbank");
+  if (!element) return false;
+  uInput = element.value.replaceAll(" ", "");
+  if (uInput.length === 0) return false;
+
+  element = document.getElementById("fld-custbacc");
+  if (!element) return false;
+  uInput = element.value.replaceAll(" ", "");
+  if (uInput.length !== 11) return false;
+
+  element = document.getElementById("fld-secpin");
+  if (!element) return false;
+  uInput = element.value.replaceAll(" ", "");
+  if (uInput !== custSecpin) return false;
+
+  element = document.getElementById("fld-addamount");
+  if (!element) return false;
+  uInput = parseFloat(element.value.replaceAll(" ", ""));
+  if (uInput <= 0 || Number.isNaN(uInput)) return false;
+
+  const custCurrBal = document.getElementById("currBalance").innerText;
+  uInput = uInput + parseFloat(custCurrBal);
+  document.getElementById("currBalance").innerText = uInput.toFixed(2);
+  document.getElementById("fld-addamount").value = null;
+
+  return true;
+}
+
+//!SECTION - add money area ends
