@@ -220,7 +220,40 @@
       <section id="tab-paybill" class="hidden mt-8">
         <h2 class="mb-6 font-semibold text-[#080808e6] text-lg text-center">Pay Bill</h2>
 
+        <form class="bg-white p-6 rounded-3xl">
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-billtype-of-bpay">Select to Pay</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-billtype-of-bpay" placeholder="Select bill type" list="lov-types-of-bpay" required />
+            <datalist id="lov-types-of-bill">
+              <option value="Water"></option>
+              <option value="Electricity"></option>
+              <option value="Titas Gas"></option>
+              <option value="Palli Biddut"></option>
+            </datalist>
+          </div>
 
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-billracc-of-bpay">Biller Account Number</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-billracc-of-bpay" placeholder="Enter 11 digit biller account number" required />
+          </div>
+
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-moneyval-of-bpay">Amount</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-moneyval-of-bpay" placeholder="Enter the amount to add" required />
+          </div>
+
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-securpin-of-bpay">Pin Number</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-securpin-of-bpay" placeholder="Enter 4-digit pin number" required />
+          </div>
+
+          <button class="mt-8 px-5 py-6 rounded-4xl w-full font-bold text-white text-xl btn btn-info" id="btn-billpay"
+            type="submit">Add Money</button>
+        </form>
       </section>
       <!-- //!SECTION - pay bill tab ends -->
 
