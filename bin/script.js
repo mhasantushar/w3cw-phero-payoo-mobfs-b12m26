@@ -220,11 +220,11 @@ function processAddmoneyReq() {
     return false;
   }
 
-  // const oldBalance = getCustomerBalance();
-  // const newBalance = uInput + oldBalance;
-  saveCustomerBalance(getCustomerBalance() - uInput);
-  document.getElementById("fld-moneyval-of-addm").value = "";
+  const oldBalance = getCustomerBalance();
+  const newBalance = oldBalance + uInput;
+  saveCustomerBalance(newBalance);
 
+  document.getElementById("fld-moneyval-of-addm").value = "";
   return true;
 }
 //!SECTION - tab add money scripts end
@@ -251,7 +251,7 @@ function processCashoutReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Agent number not specified or invaid");
+    alert("Agent Number not specified or invaid");
     return false;
   }
 
@@ -281,9 +281,80 @@ function processCashoutReq() {
     return false;
   }
 
-  saveCustomerBalance(getCustomerBalance() - uInput);
-  document.getElementById("fld-moneyval-of-cout").value = "";
+  const oldBalance = getCustomerBalance();
+  if (uInput > oldBalance) {
+    alert("Insufficient balance");
+    return false;
+  }
+  const newBalance = oldBalance - uInput;
+  saveCustomerBalance(newBalance);
 
+  document.getElementById("fld-moneyval-of-cout").value = "";
   return true;
 }
 //!SECTION - tab cash out scripts end
+
+//SECTION - MAIN PAGE > TAB TRANSFER MONEY SCRIPTS START HERE
+const btnTransfer = document.getElementById("btn-transfer");
+if (btnTransfer) {
+  btnTransfer.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (processTransferReq()) alert("Transfer money succeeded!");
+  });
+}
+
+function processTransferReq() {
+  let element;
+  let uInput;
+
+  element = document.getElementById("fld-payeeacc-of-xfer");
+  // console.log(element);
+  if (!element) {
+    alert("Payee Acoount field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput.length !== 11) {
+    alert("Payee Account Number not specified or invaid");
+    return false;
+  }
+
+  element = document.getElementById("fld-securpin-of-xfer");
+  // console.log(element);
+  if (!element) {
+    alert("Pin field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput !== custSecpin) {
+    alert("Pin Number not specified or invalid");
+    return false;
+  }
+
+  element = document.getElementById("fld-moneyval-of-xfer");
+  // console.log(element);
+  if (!element) {
+    alert("Amount field not found");
+    return false;
+  }
+  uInput = parseFloat(element.value.replaceAll(" ", ""));
+  // console.log(uInput);
+  if (uInput <= 0 || Number.isNaN(uInput)) {
+    alert("Amount value not specified or invalid");
+    return false;
+  }
+
+  const oldBalance = getCustomerBalance();
+  if (uInput > oldBalance) {
+    alert("Insufficient balance");
+    return false;
+  }
+  const newBalance = oldBalance - uInput;
+  saveCustomerBalance(newBalance);
+
+  document.getElementById("fld-moneyval-of-cout").value = "";
+  return true;
+}
+//!SECTION - tab transfer money scripts end
