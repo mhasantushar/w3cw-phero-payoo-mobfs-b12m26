@@ -4,7 +4,24 @@ const custSecpin = "1234";
 let oldSelNavigId = "nav-addmoney"; //the page loads with this navigation option selected
 
 //SECTION - COMMON FUNCTIONS START HERE
+function getCustomerBalance() {
+  const element = document.getElementById("lbl-cust-currbalance");
+  if (!element) {
+    alert("System err: Element not found");
+    return 0;
+  }
+  return parseFloat(element.innerText);
+}
 
+function saveCustomerBalance(balance) {
+  const element = document.getElementById("lbl-cust-currbalance");
+  if (!element) {
+    alert("System err: Element not found");
+    return false;
+  }
+  element.innerText = balance.toFixed(2);
+  return true;
+}
 //!SECTION common functions end
 
 //SECTION - LOGIN PAGE SCRIPTS START HERE
@@ -149,7 +166,7 @@ function processNewSelection(newSelNavigId) {
 }
 //!SECTION - main page > common navig area scripts end
 
-//SECTION - BOTTOM TABBED > TAB ADD MONEY SCRIPTS START HERE
+//SECTION - BOTTOM AREA > TAB ADD MONEY SCRIPTS START HERE
 const btnAddmoney = document.getElementById("btn-addmoney");
 if (btnAddmoney) {
   btnAddmoney.addEventListener("click", function (e) {
@@ -163,58 +180,60 @@ function processAddmoneyReq() {
   let uInput;
 
   element = document.getElementById("fld-custbank-of-addm");
-  console.log(element);
+  // console.log(element);
   if (!element) {
     alert("Bank field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
-  console.log(uInput);
+  // console.log(uInput);
   if (uInput.length === 0) {
     alert("Bank name not specified");
     return false;
   }
+
   element = document.getElementById("fld-custbacc-of-addm");
-  console.log(element);
+  // console.log(element);
   if (!element) {
     alert("Account field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
-  console.log(uInput);
+  // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Account value not specified or invaid");
+    alert("Account number not specified or invaid");
     return false;
   }
+
   element = document.getElementById("fld-securpin-of-addm");
-  console.log(element);
+  // console.log(element);
   if (!element) {
     alert("Pin field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
-  console.log(uInput);
+  // console.log(uInput);
   if (uInput !== custSecpin) {
     alert("Pin value not specified or invalid");
     return false;
   }
 
   element = document.getElementById("fld-moneyval-of-addm");
-  console.log(element);
+  // console.log(element);
   if (!element) {
     alert("Amount field not found");
     return false;
   }
   uInput = parseFloat(element.value.replaceAll(" ", ""));
-  console.log(uInput);
+  // console.log(uInput);
   if (uInput <= 0 || Number.isNaN(uInput)) {
     alert("Amount value not specified or invalid");
     return false;
   }
 
-  element = document.getElementById("lbl-cust-currbalance");
-  const newBalance = uInput + parseFloat(element.innerText);
-  element.innerText = newBalance.toFixed(2);
+  // const oldBalance = getCustomerBalance();
+  // const newBalance = uInput + oldBalance;
+  saveCustomerBalance(uInput + getCustomerBalance());
   document.getElementById("fld-moneyval-of-addm").value = "";
 
   return true;
