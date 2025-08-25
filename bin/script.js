@@ -117,6 +117,7 @@ function processNewSelection(newSelNavigId) {
   const newSelNavig = document.getElementById(newSelNavigId);
   // console.log(oldSelNavig.innerText, newSelNavig.innerText);
 
+  //TODO - following block can be done using .parent() and .children() methods of node collection
   const oldNavigLblId = "lbl" + oldSelNavigId.slice(3);
   const newNavigLblId = "lbl" + newSelNavigId.slice(3);
   const oldNavigLabel = document.getElementById(oldNavigLblId);
@@ -161,12 +162,11 @@ function processNewSelection(newSelNavigId) {
       break;
     }
   }
-
   oldSelNavigId = newSelNavigId;
 }
 //!SECTION - main page > common navig area scripts end
 
-//SECTION - BOTTOM AREA > TAB ADD MONEY SCRIPTS START HERE
+//SECTION - MAIN PAGE > TAB ADD MONEY SCRIPTS START HERE
 const btnAddmoney = document.getElementById("btn-addmoney");
 if (btnAddmoney) {
   btnAddmoney.addEventListener("click", function (e) {
@@ -188,20 +188,20 @@ function processAddmoneyReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length === 0) {
-    alert("Bank name not specified");
+    alert("Bank Name not specified");
     return false;
   }
 
   element = document.getElementById("fld-custbacc-of-addm");
   // console.log(element);
   if (!element) {
-    alert("Account field not found");
+    alert("Bank Account field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Account number not specified or invaid");
+    alert("Bank Account Number not specified or invaid");
     return false;
   }
 
@@ -214,7 +214,7 @@ function processAddmoneyReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput !== custSecpin) {
-    alert("Pin value not specified or invalid");
+    alert("Pin Number not specified or invalid");
     return false;
   }
 
@@ -233,9 +233,68 @@ function processAddmoneyReq() {
 
   // const oldBalance = getCustomerBalance();
   // const newBalance = uInput + oldBalance;
-  saveCustomerBalance(uInput + getCustomerBalance());
+  saveCustomerBalance(getCustomerBalance() - uInput);
   document.getElementById("fld-moneyval-of-addm").value = "";
 
   return true;
 }
 //!SECTION - tab add money scripts end
+
+//SECTION - MAIN PAGE > TAB CASH OUT SCRIPTS START HERE
+const btnCashout = document.getElementById("btn-cashout");
+if (btnCashout) {
+  btnCashout.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (processCashoutReq()) alert("Cash out succeeded!");
+  });
+}
+
+function processCashoutReq() {
+  let element;
+  let uInput;
+
+  element = document.getElementById("fld-agentacc-of-cout");
+  // console.log(element);
+  if (!element) {
+    alert("Agent field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput.length !== 11) {
+    alert("Agent number not specified or invaid");
+    return false;
+  }
+
+  element = document.getElementById("fld-securpin-of-cout");
+  // console.log(element);
+  if (!element) {
+    alert("Pin field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput !== custSecpin) {
+    alert("Pin Number not specified or invalid");
+    return false;
+  }
+
+  element = document.getElementById("fld-moneyval-of-cout");
+  // console.log(element);
+  if (!element) {
+    alert("Amount field not found");
+    return false;
+  }
+  uInput = parseFloat(element.value.replaceAll(" ", ""));
+  // console.log(uInput);
+  if (uInput <= 0 || Number.isNaN(uInput)) {
+    alert("Amount value not specified or invalid");
+    return false;
+  }
+
+  saveCustomerBalance(getCustomerBalance() - uInput);
+  document.getElementById("fld-moneyval-of-cout").value = "";
+
+  return true;
+}
+//!SECTION - tab cash out scripts end

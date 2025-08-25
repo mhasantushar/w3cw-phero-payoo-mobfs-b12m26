@@ -48,7 +48,7 @@
 
 
       <!-- //SECTION - TOP NAVIGATION AREA STARTS -->
-      <section class="bg-white mb-8 px-6 pt-8 pb-6 rounded-b-3xl">
+      <section class="bg-white px-6 pt-8 pb-6 rounded-b-3xl">
         <h1 class="font-bold text-2xl">🔥 Welcome to Payooo!</h1>
         <p class="mt-3 text-[08080880]">Enjoy easy and convenient financial services with us. Cashout charge is low
           and affordable.</p>
@@ -95,15 +95,14 @@
       <!-- //!SECTION top navigation area ends -->
 
 
-      <!-- //SECTION - BOTTOM TABBED AREA STARTS...  -->
-      <!-- ADD MONEY TAB -->
-      <section class="" id="tab-addmoney">
+      <!-- //SECTION - ADD MONEY TAB STARTS  -->
+      <section id="tab-addmoney" class="mt-8">
         <h2 class="mb-6 font-semibold text-[#080808e6] text-lg text-center">Add Money</h2>
 
         <form class="bg-white p-6 rounded-3xl">
           <div>
             <label class="font-medium text-[#080808b3]" for="fld-custbank-of-addm">Select A Bank</label>
-            <input type="text" class="bg-[#f4f5f7] mt-3 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
               id="fld-custbank-of-addm" placeholder="Select Bank" list="lov-banks-of-addm" required />
             <datalist id="lov-banks-of-addm">
               <option value="Brac Bank"></option>
@@ -121,7 +120,7 @@
           </div>
 
           <div>
-            <label class="font-medium text-[#080808b3]" for="fld-moneyval-of-addm">Amount to Add</label>
+            <label class="font-medium text-[#080808b3]" for="fld-moneyval-of-addm">Amount</label>
             <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
               id="fld-moneyval-of-addm" placeholder="Enter the amount to add" required />
           </div>
@@ -136,26 +135,57 @@
             type="submit">Add Money</button>
         </form>
       </section>
+      <!-- //!SECTION - add money tab ends -->
 
-      <!-- CASHOUT TAB -->
-      <section id="tab-cashout">
+
+      <!-- //SECTION - CASHOUT TAB STARTS HERE -->
+      <section id="tab-cashout" class="mt-8">
+        <h2 class="mb-6 font-semibold text-[#080808e6] text-lg text-center">Cash Out</h2>
+        <form class="bg-white p-6 rounded-3xl">
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-agentacc-of-cout">Agent Number</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-agentacc-of-cout" placeholder="Enter 11 digit agent number" required />
+          </div>
+
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-moneyval-of-cout">Amount</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-moneyval-of-cout" placeholder="Enter the amount to withdraw" required />
+          </div>
+
+          <div>
+            <label class="font-medium text-[#080808b3]" for="fld-securpin-of-cout">Pin Number</label>
+            <input type="text" class="bg-[#f4f5f7] mt-3 mb-4 px-4 py-5 rounded-4xl w-full text-[#080808] input"
+              id="fld-securpin-of-cout" placeholder="Enter 4-digit pin number" required />
+          </div>
+
+          <button class="mt-8 px-5 py-6 rounded-4xl w-full font-bold text-white text-xl btn btn-info" id="btn-cashout"
+            type="submit">Withdraw Money</button>
+        </form>
       </section>
+      <!-- //!SECTION cashout tab ends -->
 
-      <!-- TRANSFER TAB -->
+      <!-- //SECTION - TRANSFER MONEY TAB STARTS HERE -->
       <section id="tab-transfer">
       </section>
+      <!-- //!SECTION - transfer money tab ends -->
 
-      <!-- GET BONUS TAB -->
+      <!-- //SECTION - GET BONUS TAB STARTS HERE -->
       <section id="tab-getbonus">
       </section>
+      <!-- //!SECTION - get bonus tab ends -->
 
-      <!-- PAY BILL TAB -->
+      <!-- //SECTION - PAY BILL TAB STARTS HERE -->
       <section id="tab-paybill">
       </section>
+      <!-- //!SECTION - pay bill tab ends -->
 
       <!-- TRANSATIONS TAB -->
+      <!-- //SECTION - TRANSACTIONS TAB STARTS HERE -->
       <section id="tab-transact">
       </section>
+      <!-- //!SECTION - transactions tab ends -->
     </main>
 
 
