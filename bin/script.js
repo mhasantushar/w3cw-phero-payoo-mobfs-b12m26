@@ -146,7 +146,7 @@ function processNewSelection(newSelNavigId) {
   const newTabId = "tab" + newSelNavigId.slice(3);
   const oldTabox = document.getElementById(oldTabId);
   const newTabox = document.getElementById(newTabId);
-  console.log(oldTabId, newTabId);
+  // console.log(oldTabId, newTabId);
 
   oldTabox.classList.add("hidden");
   newTabox.classList.remove("hidden");
