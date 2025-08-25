@@ -177,20 +177,20 @@ function processAddmoneyReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length === 0) {
-    alert("Bank Name not specified");
+    alert("Bank name not specified");
     return false;
   }
 
   element = document.getElementById("fld-custbacc-of-addm");
   // console.log(element);
   if (!element) {
-    alert("Bank Account field not found");
+    alert("Bank account field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Bank Account Number not specified or invaid");
+    alert("Bank account number not specified or invaid");
     return false;
   }
 
@@ -203,7 +203,7 @@ function processAddmoneyReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput !== custSecpin) {
-    alert("Pin Number not specified or invalid");
+    alert("Pin number not specified or invalid");
     return false;
   }
 
@@ -251,7 +251,7 @@ function processCashoutReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Agent Number not specified or invaid");
+    alert("Agent number not specified or invaid");
     return false;
   }
 
@@ -264,7 +264,7 @@ function processCashoutReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput !== custSecpin) {
-    alert("Pin Number not specified or invalid");
+    alert("Pin number not specified or invalid");
     return false;
   }
 
@@ -310,13 +310,13 @@ function processTransferReq() {
   element = document.getElementById("fld-payeeacc-of-xfer");
   // console.log(element);
   if (!element) {
-    alert("Payee Acoount field not found");
+    alert("Payee acoount field not found");
     return false;
   }
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput.length !== 11) {
-    alert("Payee Account Number not specified or invaid");
+    alert("Payee account number not specified or invaid");
     return false;
   }
 
@@ -329,7 +329,7 @@ function processTransferReq() {
   uInput = element.value.replaceAll(" ", "");
   // console.log(uInput);
   if (uInput !== custSecpin) {
-    alert("Pin Number not specified or invalid");
+    alert("Pin number not specified or invalid");
     return false;
   }
 
@@ -354,7 +354,44 @@ function processTransferReq() {
   const newBalance = oldBalance - uInput;
   saveCustomerBalance(newBalance);
 
-  document.getElementById("fld-moneyval-of-cout").value = "";
+  document.getElementById("fld-moneyval-of-xfer").value = "";
   return true;
 }
 //!SECTION - tab transfer money scripts end
+
+//SECTION - MAIN PAGE > TAB GET BONUS SCRIPTS START HERE
+const btnGetbonus = document.getElementById("btn-getbonus");
+if (btnGetbonus) {
+  btnGetbonus.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (processGetbonusReq()) alert("Get bonus succeeded!");
+  });
+}
+
+function processGetbonusReq() {
+  let element;
+  let uInput;
+
+  element = document.getElementById("fld-couponno-of-getb");
+  // console.log(element);
+  if (!element) {
+    alert("Coupon field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput.length === 0) {
+    alert("Coupon number not specified or invaid");
+    return false;
+  }
+
+  const minBonus = 100;
+  const maxBonus = 500; 
+
+  const oldBalance = getCustomerBalance();
+  const newBalance = oldBalance + Math.floor(Math.random() * (maxBonus - minBonus + 1)) + minBonus;
+  saveCustomerBalance(newBalance);
+
+  return true;
+}
+//!SECTION - tab get bonus scripts end
