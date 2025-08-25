@@ -124,7 +124,8 @@ function processNewSelection(newSelNavigId) {
   const newNavigLabel = document.getElementById(newNavigLblId);
   // console.log(oldNavigLabel.innerText, newNavigLabel.innerText);
 
-  //making new sel navigation option blue themed and old sel navigation option normai-themed...
+  //making new sel navigation option blue themed
+  // and old sel navigation option normai-themed...
   oldSelNavig.classList.remove("border-blue-500");
   oldSelNavig.classList.remove("bg-blue-50");
   oldSelNavig.classList.add("border-[#0874f20d]");
@@ -132,7 +133,7 @@ function processNewSelection(newSelNavigId) {
   newSelNavig.classList.add("border-blue-500");
   newSelNavig.classList.add("bg-blue-50");
 
-  //doing the same treatment for new and old navigation option's labels...
+  //now processing navigation options' labels...
   oldNavigLabel.classList.remove("font-bold");
   oldNavigLabel.classList.remove("text-blue-500");
   oldNavigLabel.classList.add("text-[#080808b3]");
@@ -140,28 +141,16 @@ function processNewSelection(newSelNavigId) {
   newNavigLabel.classList.add("font-bold");
   newNavigLabel.classList.add("text-blue-500");
 
-  //now, invoking associated action panel...
-  //TODO - need to code to show/hide bottom panels based on user selection
-  switch (newSelNavigId) {
-    case "nav-addmoney": {
-      break;
-    }
-    case "nav-cashout": {
-      break;
-    }
-    case "nav-transfer": {
-      break;
-    }
-    case "nav-getbonus": {
-      break;
-    }
-    case "nav-paybill": {
-      break;
-    }
-    case "nav-transact": {
-      break;
-    }
-  }
+  //finally invoking associated tab...
+  const oldTabId = "tab" + oldSelNavigId.slice(3);
+  const newTabId = "tab" + newSelNavigId.slice(3);
+  const oldTabox = document.getElementById(oldTabId);
+  const newTabox = document.getElementById(newTabId);
+  console.log(oldTabId, newTabId);
+
+  oldTabox.classList.add("hidden");
+  newTabox.classList.remove("hidden");
+
   oldSelNavigId = newSelNavigId;
 }
 //!SECTION - main page > common navig area scripts end
