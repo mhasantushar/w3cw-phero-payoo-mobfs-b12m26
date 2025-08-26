@@ -387,11 +387,88 @@ function processGetbonusReq() {
 
   const minBonus = 100;
   const maxBonus = 500; 
-
   const oldBalance = getCustomerBalance();
   const newBalance = oldBalance + Math.floor(Math.random() * (maxBonus - minBonus + 1)) + minBonus;
-  saveCustomerBalance(newBalance);
 
+  saveCustomerBalance(newBalance);
   return true;
 }
 //!SECTION - tab get bonus scripts end
+
+//SECTION - MAIN PAGE > TAB PAY BILL SCRIPTS START HERE
+const btnPaybill = document.getElementById("btn-paybill");
+if (btnPaybill) {
+  btnPaybill.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (processPaybillReq()) alert("Pay bill succeeded!");
+  });
+}
+
+function processPaybillReq() {
+  let element;
+  let uInput;
+
+  element = document.getElementById("fld-billtype-of-payb");
+  // console.log(element);
+  if (!element) {
+    alert("Select to pay field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput.length === 0) {
+    alert("Select to pay option not specified");
+    return false;
+  }
+
+  element = document.getElementById("fld-billracc-of-payb");
+  // console.log(element);
+  if (!element) {
+    alert("Biller account field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput.length !== 11) {
+    alert("Biller account number not specified or invaid");
+    return false;
+  }
+
+  element = document.getElementById("fld-securpin-of-payb");
+  // console.log(element);
+  if (!element) {
+    alert("Pin field not found");
+    return false;
+  }
+  uInput = element.value.replaceAll(" ", "");
+  // console.log(uInput);
+  if (uInput !== custSecpin) {
+    alert("Pin number not specified or invalid");
+    return false;
+  }
+
+  element = document.getElementById("fld-moneyval-of-payb");
+  // console.log(element);
+  if (!element) {
+    alert("Amount field not found");
+    return false;
+  }
+  uInput = parseFloat(element.value.replaceAll(" ", ""));
+  // console.log(uInput);
+  if (uInput <= 0 || Number.isNaN(uInput)) {
+    alert("Amount value not specified or invalid");
+    return false;
+  }
+
+  const oldBalance = getCustomerBalance();
+  if (uInput > oldBalance) {
+    alert("Insufficient balance");
+    return false;
+  }
+  const newBalance = oldBalance - uInput;
+  saveCustomerBalance(newBalance);
+
+  document.getElementById("fld-moneyval-of-payb").value = "";
+  return true;
+}
+//!SECTION - tab pay bill scripts end
