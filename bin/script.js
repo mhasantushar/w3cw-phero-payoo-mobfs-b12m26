@@ -1,7 +1,7 @@
 const custMobile = "00123456789";
 const custSecpin = "1234";
-
-let oldSelNavigId = "nav-addmoney"; //the page loads with this navigation option selected
+let oldSelNavigId = "nav-transact"; //the page loads with this navigation option
+const userTransactions = [];
 
 //SECTION - COMMON FUNCTIONS START HERE
 function getCustomerBalance() {
@@ -225,6 +225,14 @@ function processAddmoneyReq() {
   saveCustomerBalance(newBalance);
 
   document.getElementById("fld-moneyval-of-addm").value = "";
+
+  //saving to transaction history..
+  const uEvent = {
+    type: "Add Money",
+    amount: uInput,
+    datetime: new Date().toLocaleString(),
+  };
+  userTransactions.unshift(uEvent);
   return true;
 }
 //!SECTION - tab add money scripts end
@@ -288,8 +296,15 @@ function processCashoutReq() {
   }
   const newBalance = oldBalance - uInput;
   saveCustomerBalance(newBalance);
-
   document.getElementById("fld-moneyval-of-cout").value = "";
+
+  //saving to transaction history..
+  const uEvent = {
+    type: "Cash Out",
+    amount: uInput,
+    datetime: new Date().toLocaleString(),
+  };
+  userTransactions.unshift(uEvent);
   return true;
 }
 //!SECTION - tab cash out scripts end
@@ -353,8 +368,15 @@ function processTransferReq() {
   }
   const newBalance = oldBalance - uInput;
   saveCustomerBalance(newBalance);
-
   document.getElementById("fld-moneyval-of-xfer").value = "";
+
+  //saving to transaction history..
+  const uEvent = {
+    type: "Transfer Money",
+    amount: uInput,
+    datetime: new Date().toLocaleString(),
+  };
+  userTransactions.unshift(uEvent);
   return true;
 }
 //!SECTION - tab transfer money scripts end
@@ -386,11 +408,19 @@ function processGetbonusReq() {
   }
 
   const minBonus = 100;
-  const maxBonus = 500; 
+  const maxBonus = 500;
+  const gotBonus =
+    Math.floor(Math.random() * (maxBonus - minBonus + 1)) + minBonus;
   const oldBalance = getCustomerBalance();
-  const newBalance = oldBalance + Math.floor(Math.random() * (maxBonus - minBonus + 1)) + minBonus;
+  saveCustomerBalance(oldBalance + gotBonus);
 
-  saveCustomerBalance(newBalance);
+  //saving to transaction history..
+  const uEvent = {
+    type: "Got Bonus",
+    amount: gotBonus,
+    datetime: new Date().toLocaleString(),
+  };
+  userTransactions.unshift(uEvent);
   return true;
 }
 //!SECTION - tab get bonus scripts end
@@ -406,7 +436,7 @@ if (btnPaybill) {
 
 function processPaybillReq() {
   let element;
-  let uInput;
+  let uInput, bType;
 
   element = document.getElementById("fld-billtype-of-payb");
   // console.log(element);
@@ -420,6 +450,7 @@ function processPaybillReq() {
     alert("Select to pay option not specified");
     return false;
   }
+  bType = element.value;
 
   element = document.getElementById("fld-billracc-of-payb");
   // console.log(element);
@@ -467,8 +498,54 @@ function processPaybillReq() {
   }
   const newBalance = oldBalance - uInput;
   saveCustomerBalance(newBalance);
-
   document.getElementById("fld-moneyval-of-payb").value = "";
+
+  //saving to transaction history..
+  const uEvent = {
+    type: "Pay Bill (" + bType + ")",
+    amount: uInput,
+    datetime: new Date().toLocaleString(),
+  };
+  userTransactions.unshift(uEvent);
   return true;
 }
 //!SECTION - tab pay bill scripts end
+
+//SECTION - MAIN PAGE > TAB TRANSACTIONS SCRIPTS START HERE
+const navTransact = document.getElementById("nav-transact");
+// there is no button on this tab, so we will add event listener to the tab section iteself
+// and this is the second listener on this section, first one is in the common navig area section above
+// plus this is an example of event delegation too
+if (navTransact) {
+  navTransact.addEventListener("click", function (e) {
+    e.preventDefault();
+    ShowTransactions();
+  });
+}
+
+function ShowTransactions() {
+  const wrapperTab = document.getElementById("tab-transact");
+  wrapperTab.innerHTML = "";
+  for (const uEvent of userTransactions) {
+    const wrapperDiv = document.createElement("div");
+    wrapperDiv.innerHTML = `
+        <div class="flex justify-between items-center bg-white mb-3 p-6 rounded-3xl">
+          <div class="flex justify-start items-center gap-2">
+            <figure class="bg-[#0808080d] p-2.5 rounded-full">
+              <img src="./images/wallet1.png" alt="Transaction">
+            </figure>
+            <div>
+              <h4 class="font-semibold text-[#080808b3]">${uEvent.type} [<small>BDT ${uEvent.amount}]</small></h4>
+              <p class="text-[#080808b3] text-xs">${uEvent.datetime}</p>
+            </div>
+          </div>
+          <div>
+            <i class="text-[#080808b3] fa-solid fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+    `;
+    wrapperTab.appendChild(wrapperDiv);
+  }
+}
+
+//!SECTION - tab transactions scripts end
